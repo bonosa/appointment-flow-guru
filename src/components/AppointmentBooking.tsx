@@ -68,61 +68,71 @@ export default function AppointmentBooking() {
 
   if (step === 'confirmation') {
     return (
-      <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
-        <Card className="w-full max-w-md animate-scale-in">
-          <CardContent className="p-8 text-center">
-            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <CalendarIcon className="w-8 h-8 text-primary-foreground" />
+      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+        {/* Background effects */}
+        <div className="absolute inset-0 aurora-bg floating"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-primary rounded-full opacity-20 blur-xl floating"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent rounded-full opacity-30 blur-xl floating" style={{ animationDelay: '2s' }}></div>
+        
+        <div className="glass-card w-full max-w-md animate-scale-in glow-effect rounded-3xl border border-primary/20">
+          <CardContent className="p-10 text-center">
+            <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 glow-effect">
+              <CalendarIcon className="w-10 h-10 text-primary-foreground" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
-            <p className="text-muted-foreground mb-6">
+            <h2 className="text-3xl font-bold mb-3 gradient-text">Booking Confirmed!</h2>
+            <p className="text-muted-foreground mb-8 text-lg">
               Your appointment has been successfully scheduled.
             </p>
-            <div className="space-y-3 text-left bg-muted/50 rounded-lg p-4 mb-6">
-              <div className="flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4 text-primary" />
-                <span className="font-medium">
+            <div className="space-y-4 text-left glass-card rounded-xl p-6 mb-8 border border-primary/20">
+              <div className="flex items-center gap-3">
+                <CalendarIcon className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">
                   {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span className="font-medium">{selectedTime}</span>
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">{selectedTime}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-primary" />
-                <span className="font-medium">{formData.name}</span>
+              <div className="flex items-center gap-3">
+                <User className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">{formData.name}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-primary" />
-                <span className="font-medium">{formData.email}</span>
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-primary" />
+                <span className="font-semibold text-foreground">{formData.email}</span>
               </div>
             </div>
-            <Button onClick={handleBackToStart} variant="gradient" className="w-full">
+            <Button onClick={handleBackToStart} variant="gradient" className="w-full py-4 text-lg font-semibold">
               Book Another Appointment
             </Button>
           </CardContent>
-        </Card>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Schedule Your Appointment</h1>
-          <p className="text-muted-foreground text-lg">
+    <div className="min-h-screen relative overflow-hidden p-4">
+      {/* Background effects */}
+      <div className="absolute inset-0 aurora-bg floating"></div>
+      <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-primary rounded-full opacity-10 blur-xl floating"></div>
+      <div className="absolute bottom-10 right-10 w-24 h-24 bg-accent rounded-full opacity-20 blur-xl floating" style={{ animationDelay: '3s' }}></div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="text-center mb-12 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Schedule Your Appointment</h1>
+          <p className="text-muted-foreground text-xl">
             Choose a convenient time for your consultation
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Calendar Section */}
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-primary" />
+          <div className="glass-card rounded-3xl border border-primary/20 glow-effect animate-fade-in">
+            <CardHeader className="pb-6">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <CalendarIcon className="w-6 h-6 text-primary" />
                 Select Date
               </CardTitle>
             </CardHeader>
@@ -135,97 +145,100 @@ export default function AppointmentBooking() {
                 className="w-full"
               />
             </CardContent>
-          </Card>
+          </div>
 
           {/* Time Selection or Form */}
           <div className="space-y-6">
             {step === 'time' && (
-              <Card className="animate-scale-in">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-primary" />
+              <div className="glass-card rounded-3xl border border-primary/20 glow-effect animate-scale-in">
+                <CardHeader className="pb-6">
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <Clock className="w-6 h-6 text-primary" />
                     Available Times
                   </CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-lg">
                     {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-3">
                     {timeSlots.map((slot) => (
                       <Button
                         key={slot.time}
-                        variant={slot.available ? "outline" : "ghost"}
+                        variant={slot.available ? "glass" : "ghost"}
                         disabled={!slot.available}
                         onClick={() => slot.available && handleTimeSelect(slot.time)}
-                        className="text-sm"
+                        className="text-base py-3 font-medium hover:scale-105 transition-all duration-200"
                       >
                         {slot.time}
                       </Button>
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+              </div>
             )}
 
             {step === 'details' && (
-              <Card className="animate-scale-in">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <User className="w-5 h-5 text-primary" />
+              <div className="glass-card rounded-3xl border border-primary/20 glow-effect animate-scale-in">
+                <CardHeader className="pb-6">
+                  <CardTitle className="flex items-center gap-3 text-xl">
+                    <User className="w-6 h-6 text-primary" />
                     Your Details
                   </CardTitle>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-lg">
                     {selectedDate && format(selectedDate, 'MMMM d, yyyy')} at {selectedTime}
                   </p>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
                     <div>
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name" className="text-base font-semibold text-foreground">Full Name</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required
+                        className="mt-2 glass-card border-primary/20 text-foreground"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email" className="text-base font-semibold text-foreground">Email Address</Label>
                       <Input
                         id="email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
+                        className="mt-2 glass-card border-primary/20 text-foreground"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="message">Message (Optional)</Label>
+                      <Label htmlFor="message" className="text-base font-semibold text-foreground">Message (Optional)</Label>
                       <Textarea
                         id="message"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us what you'd like to discuss..."
                         rows={3}
+                        className="mt-2 glass-card border-primary/20 text-foreground"
                       />
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-4 pt-2">
                       <Button 
                         type="button" 
                         variant="outline" 
                         onClick={() => setStep('time')}
-                        className="flex-1"
+                        className="flex-1 py-3 text-base"
                       >
                         Back
                       </Button>
-                      <Button type="submit" variant="gradient" className="flex-1">
+                      <Button type="submit" variant="gradient" className="flex-1 py-3 text-base font-semibold">
                         Confirm Booking
                       </Button>
                     </div>
                   </form>
                 </CardContent>
-              </Card>
+              </div>
             )}
           </div>
         </div>
