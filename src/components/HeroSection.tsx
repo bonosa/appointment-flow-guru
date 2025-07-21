@@ -44,7 +44,17 @@ export default function HeroSection({ onBookNow }: HeroSectionProps) {
               <CalendarIcon className="mr-2 z-10 relative" />
               <span className="z-10 relative">Book Now</span>
             </Button>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-4 font-semibold">
+            <Button 
+              variant="glass" 
+              size="lg" 
+              className="text-lg px-8 py-4 font-semibold"
+              onClick={() => {
+                const featuresSection = document.querySelector('.features-section');
+                if (featuresSection) {
+                  featuresSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               <Sparkles className="mr-2" />
               Explore Features
             </Button>
@@ -52,7 +62,7 @@ export default function HeroSection({ onBookNow }: HeroSectionProps) {
         </div>
 
         {/* Features Grid */}
-        <div className="mt-20 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="features-section mt-20 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="text-center p-8 rounded-2xl glass-card glow-effect group hover:scale-105 transition-all duration-500">
             <div className="w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-neon transition-all duration-300">
               <Clock className="w-10 h-10 text-primary-foreground" />
